@@ -1,0 +1,37 @@
+<%- include("../partials/head") %>
+<%- include("../partials/nav") %>
+
+<h2 style="color: darkviolet; font-size: 1.3rem; padding: 1rem;">Here are our registered homes</h2>
+
+<div style="display: flex; flex-wrap: wrap; gap: 2rem; padding: 1rem; justify-content: center;">
+
+  <% registeredhomes.forEach((home) => { %>
+    <div style="background-color: lavender; border-radius: 12px; box-shadow: 2px 2px 8px rgba(128, 0, 128, 0.5); padding: 1rem; width: 280px; font-size: 1rem; color: darkviolet;">
+      <img 
+        src="https://www.cvent.com/sites/default/files/image/2021-08/exterior%20view%20of%20the%20sign%20at%20the%20front%20of%20a%20hotel.jpg" 
+        height="160px" 
+        width="100%" 
+        style="border-radius: 8px;"
+      >
+
+      <p><strong>Housename:</strong> <%= home.housename %></p>
+      <p><strong>Location:</strong> <%= home.location %></p>
+      <p><strong>Price:</strong> ₹<%= home.price %></p>
+      <p><strong>Rate:</strong> <%= home.rate %>/5</p>
+
+      <div style="display: flex; justify-content: space-between; margin-top: 0.8rem;">
+        <a 
+          href="/homes/<%= home._id %>" 
+          style="background-color: darkviolet; color: white; text-decoration: none; padding: 6px 12px; border-radius: 6px;"
+        >
+          Details
+        </a>
+        <%- include("../partials/favourite", { home: home }) %>
+      </div>
+    </div>
+  <% }) %>
+
+</div>
+
+</body>
+</html>

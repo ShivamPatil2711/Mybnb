@@ -1,0 +1,40 @@
+<%- include("../partials/head")%>
+<%- include("../partials/nav")%>
+
+<h2 style="color: darkviolet; font-size: 1.5rem; margin: 1rem;">My Favourite Homes</h2>
+
+<div style="display: flex; flex-wrap: wrap; gap: 2rem; padding: 2rem; justify-content: center;">
+
+  <% favouriteHomes.forEach((home) => { %>
+    <div style="background-color: lavender; color: darkviolet; width: 320px; border-radius: 16px; padding: 1rem; box-shadow: 3px 3px 10px rgba(128, 0, 128, 0.3); display: flex; flex-direction: column; align-items: center;">
+      
+      <img 
+        src="https://www.cvent.com/sites/default/files/image/2021-08/exterior%20view%20of%20the%20sign%20at%20the%20front%20of%20a%20hotel.jpg" 
+        alt="Home Image" 
+        style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;"
+      >
+
+      <div style="margin-top: 1rem; text-align: left; width: 100%; font-size: 1rem;">
+        <p><strong>Housename:</strong> <%= home.housename %></p>
+        <p><strong>Location:</strong> <%= home.location %></p>
+        <p><strong>Price:</strong> ₹<%= home.price %></p>
+        <p><strong>Rate:</strong> <%= home.rate %></p>
+      </div>
+
+      <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+        <button style="padding: 0.5rem 1rem; background-color: darkviolet; color: white; border: none; border-radius: 8px; cursor: pointer;">
+          Book
+        </button>
+        <form action="/deletefavourite/<%= home._id %>" method="post">
+          <button type="submit" style="padding: 0.5rem 1rem; background-color: crimson; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            Remove
+          </button>
+        </form>
+      </div>
+    </div>
+  <% }) %>
+
+</div>
+
+</body>
+</html>

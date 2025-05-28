@@ -1,0 +1,25 @@
+<%- include("../partials/head")%>
+<%- include("../partials/nav")%>
+
+<h2 style="color: darkviolet; font-size: 1.5rem; margin: 1rem;">Home Details:</h2>
+
+<div style="max-width: 700px; margin: auto; background-color: lavender; padding: 1.5rem; border-radius: 12px; box-shadow: 2px 2px 8px rgba(128, 0, 128, 0.4); font-size: 1.2rem; color: darkviolet;">
+
+  <img 
+    src="https://www.cvent.com/sites/default/files/image/2021-08/exterior%20view%20of%20the%20sign%20at%20the%20front%20of%20a%20hotel.jpg" 
+    height="300px" 
+    style="width: 100%; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;"
+  >
+
+  <p><strong>Housename:</strong> <%= home.housename %></p>
+  <p><strong>Location:</strong> <%= home.location %></p>
+  <p><strong>Price:</strong> ₹<%= home.price %></p>
+  <p><strong>Description:</strong> <%= home.description %></p>
+
+  <div style="margin-top: 1rem;">
+    <%- include("../partials/favourite", { home: home }) %>
+  </div>
+</div>
+
+</body>
+</html>

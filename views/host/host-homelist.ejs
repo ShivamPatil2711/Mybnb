@@ -1,0 +1,36 @@
+<%- include("../partials/head")%>
+<%- include("../partials/nav")%>
+
+<h2 style="color: darkviolet; font-size: 1.5rem; margin: 1rem;">Welcome to Airbnb Index Page</h2>
+
+<div style="display: flex; flex-wrap: wrap; gap: 2rem; padding: 2rem; justify-content: center;">
+
+  <% registeredhomes.forEach((home) => { %>
+    <div style="background-color: lavender; color: darkviolet; width: 320px; border-radius: 16px; padding: 1rem; box-shadow: 3px 3px 10px rgba(128, 0, 128, 0.3); display: flex; flex-direction: column; align-items: center;">
+      
+      <img 
+        src="https://www.cvent.com/sites/default/files/image/2021-08/exterior%20view%20of%20the%20sign%20at%20the%20front%20of%20a%20hotel.jpg" 
+        alt="Home Image" 
+        style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;"
+      >
+
+      <div style="margin-top: 1rem; text-align: left; width: 100%; font-size: 1rem;">
+        <p><strong>Housename:</strong> <%= home.housename %></p>
+        <p><strong>Location:</strong> <%= home.location %></p>
+        <p><strong>Price:</strong> ₹<%= home.price %></p>
+        <p><strong>Rate:</strong> <%= home.rate %></p>
+        <p><strong>Description:</strong> <%= home.des %></p>
+      </div>
+
+  <div style="display: flex; gap:1rem;">
+               <button style="height:30px; width: 60px; border:none;background-color:red; margin:10px 0 0 10px; font-size: 1rem;"><a style="color:white; text-decoration: none;" href="/host/edithome/<%= home._id %>?editing=true">Edit</a></button>
+               <form  action="/host/deletehome/<%= home._id%>" method="POST">
+        <button style="height:30px; width: 60px; color:white;border:none; background-color:red; margin:10px 0 0 10px;font-size: 1rem; " type="submit">Delete</button>
+      </div>
+    </div>
+  <% }) %>
+
+</div>
+
+</body>
+</html>

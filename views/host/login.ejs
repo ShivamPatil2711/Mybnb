@@ -1,0 +1,59 @@
+<%- include("../partials/nav")%>
+
+<style>
+  .login-container {
+    background-color: white;
+    padding: 2rem 3rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    margin: 4rem auto;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .login-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: 0.3s;
+  }
+
+  .login-container input:focus {
+    border-color: darkviolet;
+    outline: none;
+    box-shadow: 0 0 5px rgba(148, 0, 211, 0.2);
+  }
+
+  .login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: darkviolet;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .login-container button:hover {
+    background-color: indigo;
+  }
+</style>
+
+<div class="login-container">
+  <form method="post" action="/login-page">
+    <input type="text" name="username" placeholder="Enter Email / Name" required>
+    <input type="password" name="password" placeholder="Enter password" required>
+    <%if(isLoggedIn){%>
+      <button type="submit" value="logout">Logout</button>
+      <input type="hidden" name="log" value="out">
+   <% } else{%>
+      <button type="submit" value="login">Login</button>
+      <input type="hidden" name="log" value="in">
+ <%   }%>
+      %>
+  </form>
+</div>

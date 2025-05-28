@@ -1,0 +1,27 @@
+<%-include("./partials/head")%>
+</head>
+<body>
+  <header><h1> Register your home<h1></h1></header>
+  <main>
+    <form action="/host/airbnb-home" method="POST">
+      <label for="housename" >Housename:-</label>
+    <input type="text" id ="housename" name="housename" placeholder="Enter your name">
+    <br>
+    <br>
+    <label for="location">Location</label>
+    <input type="text"  id="location"name="location" placeholder="Enter Location">
+    <br>
+    <br>
+    <label for="price">Price</label>
+    <input type="Number" id="price" placeholder="Enter price" name="price">
+<br>
+<br>
+<label for="rate">Rating:-</label>
+<input type="number" name="rate" id="rate" placeholder="Enter rating"  min="0" max="5" step="0.1">
+<br>
+<br>
+    <button type="submit">Submit</button>
+    </form>
+  </main>
+</body>
+</html>

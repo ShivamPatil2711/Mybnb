@@ -1,0 +1,40 @@
+<%- include("../partials/head")%>
+</head>
+<body>
+  <%- include("../partials/header")%>
+  <div style="display: flex; gap:3rem; padding: 0 2rem 0 2rem; height: 40px; width: 100%; background-color: rgba(255, 247, 0, 0.532);">
+  <button ><a  style ="color:darkviolet;"href="/">Home</a></button>
+ <button><a style=" color:darkviolet; font-size:1rem;"href='/host/airbnb-home'>Add Home</a> </button>
+ </div>
+ <h2 style="color:red; font-size: 1rem;">Here are our registered homes</h2>
+<div style="display: flex;flex-wrap: wrap; height: 1000px; gap:2rem; border:2px solid black ;justify-content: space-between; padding: 10px;" >
+<% registeredhomes.forEach((home) => { %>
+  <div style="display: flex;justify-content: center; align-items: center; border: 2px solid black; color :rgb(244, 36, 9);background-color: rgb(255, 251, 0); border-radius: 5%; width:300px; height:300px; box-shadow: 5px 5px red; font-size: 1.1rem; padding: 5px;">
+  <ul class="list-disc list-inside space-y-4">
+      <li class="text-lg text-gray-800 bg-blue-100 hover:bg-blue-200 p-3 rounded-md shadow-md transition duration-200 ease-in-out">
+        <img src="https://www.cvent.com/sites/default/files/image/2021-08/exterior%20view%20of%20the%20sign%20at%20the%20front%20of%20a%20hotel.jpg"      height="150px" width="150px" >
+  <p style="display: inline;">Housename:-</p>
+        <%= home.housename %> 
+        <br> 
+        <p style="display: inline;">Location:-</p>
+        <%= home.location %> 
+        <br> 
+        <p style="display: inline;">Price:-</p> 
+        <%= home.price %>  
+        <br> 
+        <p style="display: inline;">Rate:-</p>
+        <%= home.rate%>  
+        <br> 
+        <button style="height:30px; width: 80px; color:white; background-color:red; margin:10px 0 0 20%;">Book</button>
+            </li>
+          </ul>
+        </div>
+          <% }) %>
+</div>
+  <br>
+  <br>
+
+
+
+</body>
+</html>  
