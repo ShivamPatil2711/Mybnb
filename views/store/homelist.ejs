@@ -1,36 +1,53 @@
 <%- include("../partials/head") %>
 <%- include("../partials/nav") %>
 
-<h2 style="color: darkviolet; font-size: 1.3rem; padding: 1rem;">Here are our registered homes</h2>
+<!-- Include Tailwind CSS from CDN -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-<div style="display: flex; flex-wrap: wrap; gap: 2rem; padding: 1rem; justify-content: center;">
-
-  <% registeredhomes.forEach((home) => { %>
-    <div style="background-color: lavender; border-radius: 12px; box-shadow: 2px 2px 8px rgba(128, 0, 128, 0.5); padding: 1rem; width: 280px; font-size: 1rem; color: darkviolet;">
-      <img 
-        src="https://www.cvent.com/sites/default/files/image/2021-08/exterior%20view%20of%20the%20sign%20at%20the%20front%20of%20a%20hotel.jpg" 
-        height="160px" 
-        width="100%" 
-        style="border-radius: 8px;"
-      >
-
-      <p><strong>Housename:</strong> <%= home.housename %></p>
-      <p><strong>Location:</strong> <%= home.location %></p>
-      <p><strong>Price:</strong> ₹<%= home.price %></p>
-      <p><strong>Rate:</strong> <%= home.rate %>/5</p>
-
-      <div style="display: flex; justify-content: space-between; margin-top: 0.8rem;">
-        <a 
-          href="/homes/<%= home._id %>" 
-          style="background-color: darkviolet; color: white; text-decoration: none; padding: 6px 12px; border-radius: 6px;"
+<!-- Include Toastify CSS and JS from CDN for consistency -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<body class="font-sans" style="font-family: 'Inter', sans-serif;">  
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% registeredhomes.forEach((home) => { %>
+      <div class="bg-white rounded-xl shadow-md border flex flex-col items-center p-6 transition duration-300 hover:-translate-y-1 hover:shadow-xl  ">
+        <img 
+          src="https://www.cvent.com/sites/default/files/image/2021-08/exterior%20view%20of%20the%20sign%20at%20the%20front%20of%20a%20hotel.jpg" 
+          alt="Home image"
+          class="w-full h-40 object-cover rounded-lg mb-4 border-b-2 border-red-500"
         >
-          Details
-        </a>
-        <%- include("../partials/favourite", { home: home }) %>
-      </div>
-    </div>
-  <% }) %>
+        <div class="text-red-700 text-base flex flex-col w-full">
+          <p class="mb-1"><span class="font-semibold">Housename:</span> <%= home.housename %></p>
+          <p class="mb-1"><span class="font-semibold">Location:</span> <%= home.location %></p>
+          <p class="mb-1"><span class="font-semibold">Price:</span> ₹<%= home.price %></p>
+          <div class="flex items-center mb-2">
+            <span class="text-red-500 mr-1">★</span>
+            <span><%= home.rate %>/5</span>
+          </div>
+        </div>
+        <div class="flex justify-between items-center w-full mt-4">
+          <a 
+            href="/homes/<%= home._id %>" 
+            class="bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-600 transition-colors duration-200 text-center"
+            onclick="Toastify({
+              text: 'Viewing details for <%= home.housename %>!',
+              duration: 3000,
+              gravity: 'bottom',
+              position: 'right',
+              backgroundColor: '#EF4444',
+              stopOnFocus: true,
+            }).showToast();"
+          >
+            Details
+          </a>
+         <%- include("../partials/favourite", { home: home }) %>
 
+          </button>
+        </div>
+      </div>
+    <% }) %>
+  </div>
 </div>
 
 </body>

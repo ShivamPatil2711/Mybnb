@@ -1,59 +1,45 @@
 <%- include("../partials/nav")%>
 
-<style>
-  .login-container {
-    background-color: white;
-    padding: 2rem 3rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    width: 320px;
-    margin: 4rem auto;
-    text-align: center;
-    font-family: 'Segoe UI', sans-serif;
-  }
+<!-- Toastify CSS & JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-  .login-container input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    transition: 0.3s;
-  }
-
-  .login-container input:focus {
-    border-color: darkviolet;
-    outline: none;
-    box-shadow: 0 0 5px rgba(148, 0, 211, 0.2);
-  }
-
-  .login-container button {
-    width: 100%;
-    padding: 10px;
-    background-color: darkviolet;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-
-  .login-container button:hover {
-    background-color: indigo;
-  }
-</style>
-
-<div class="login-container">
-  <form method="post" action="/login-page">
-    <input type="text" name="username" placeholder="Enter Email / Name" required>
-    <input type="password" name="password" placeholder="Enter password" required>
-    <%if(isLoggedIn){%>
-      <button type="submit" value="logout">Logout</button>
-      <input type="hidden" name="log" value="out">
-   <% } else{%>
-      <button type="submit" value="login">Login</button>
-      <input type="hidden" name="log" value="in">
- <%   }%>
-      %>
-  </form>
+<!-- Centering Container -->
+<div class="flex items-center justify-center  ">
+  <div class="bg-white p-8 rounded-2xl shadow-2xl w-full  max-w-xs text-center border mt-20 hover:-translate-y-1 hover:shadow-xl flex flex-col">
+    <form method="post" action="/login-page" id="loginForm" class="space-y-4">
+      <input 
+        type="text" 
+        name="username" 
+        placeholder="Enter Email / Name" 
+        required 
+        class="w-full px-4 py-2 border border-red-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+      >
+      <input 
+        type="password" 
+        name="password" 
+        placeholder="Enter password" 
+        required 
+        class="w-full px-4 py-2 border border-red-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+      >
+      <% if(isLoggedIn) { %>
+        <button 
+          type="submit" 
+          value="logout"
+          class="w-full py-2 bg-red-500 hover:bg-red-700 text-white rounded-lg font-semibold transition"
+          onclick="showToast('Logged out successfully!')"
+        >Logout</button>
+        <input type="hidden" name="log" value="out">
+      <% } else { %>
+        <button 
+          type="submit" 
+          value="login"
+          class="w-full py-2 bg-green-500 hover:bg-green-700 text-white rounded-lg font-semibold transition"
+          onclick="showToast('Logged in successfully!')"
+        >Login</button>
+        <input type="hidden" name="log" value="in">
+      <% } %>
+    </form>
+  </div>
 </div>
+

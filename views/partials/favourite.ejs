@@ -1,4 +1,14 @@
-<form action="/favourites" method="POST">
-  <button style="color:white; text-decoration:none;height:30px; width: 150px;  background-color:red; text-align:center;line-height:30px"type="submit">Add to Favourite</button>
-  <input type="hidden" name="id" value="<%= home._id%>">
+<form action="/favourites" method="POST" class="inline">
+  <input type="hidden" name="id" value="<%= home._id %>">
+  <button
+    type="submit"
+    class="p-2 rounded-full hover:bg-red-100 transition"
+    aria-label="Add to Favourites"
+    title="Add to Favourites"
+  >
+    <!-- Heart SVG Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500 fill-current" viewBox="0 0 24 24">
+      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+  </button>
 </form>

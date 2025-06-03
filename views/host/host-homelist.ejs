@@ -1,35 +1,39 @@
 <%- include("../partials/head")%>
 <%- include("../partials/nav")%>
+<body class="font-sans" style="font-family: 'Inter', sans-serif;">  
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <% registeredhomes.forEach((home) => { %>
+      <div class="bg-white text-red-700 w-80 rounded-2xl p-6 shadow-lg flex flex-col items-center border border-red-100 hover:shadow-2xl hover:border-red-300 transition ">
+        <img 
+          src="https://www.cvent.com/sites/default/files/image/2021-08/exterior%20view%20of%20the%20sign%20at%20the%20front%20of%20a%20hotel.jpg" 
+          alt="Home Image" 
+          class="w-full h-40 object-cover rounded-xl mb-4"
+        >
 
-<h2 style="color: darkviolet; font-size: 1.5rem; margin: 1rem;">Welcome to Airbnb Index Page</h2>
+        <div class="w-full text-base space-y-1 mb-4">
+          <p><span class="font-semibold">Housename:</span> <%= home.housename %></p>
+          <p><span class="font-semibold">Location:</span> <%= home.location %></p>
+          <p><span class="font-semibold">Price:</span> ₹<%= home.price %></p>
+          <p><span class="font-semibold">Rate:</span> <%= home.rate %></p>
+          <p><span class="font-semibold">Description:</span> <%= home.des %></p>
+        </div>
 
-<div style="display: flex; flex-wrap: wrap; gap: 2rem; padding: 2rem; justify-content: center;">
-
-  <% registeredhomes.forEach((home) => { %>
-    <div style="background-color: lavender; color: darkviolet; width: 320px; border-radius: 16px; padding: 1rem; box-shadow: 3px 3px 10px rgba(128, 0, 128, 0.3); display: flex; flex-direction: column; align-items: center;">
-      
-      <img 
-        src="https://www.cvent.com/sites/default/files/image/2021-08/exterior%20view%20of%20the%20sign%20at%20the%20front%20of%20a%20hotel.jpg" 
-        alt="Home Image" 
-        style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;"
-      >
-
-      <div style="margin-top: 1rem; text-align: left; width: 100%; font-size: 1rem;">
-        <p><strong>Housename:</strong> <%= home.housename %></p>
-        <p><strong>Location:</strong> <%= home.location %></p>
-        <p><strong>Price:</strong> ₹<%= home.price %></p>
-        <p><strong>Rate:</strong> <%= home.rate %></p>
-        <p><strong>Description:</strong> <%= home.des %></p>
+        <div class="flex gap-4 mt-2">
+          <a 
+            href="/host/edithome/<%= home._id %>?editing=true"
+            class="h-10 w-20 flex items-center justify-center bg-red-500 text-white rounded-lg font-semibold text-base hover:bg-red-700 transition"
+          >Edit</a>
+          <form action="/host/deletehome/<%= home._id %>" method="POST">
+            <button 
+              type="submit"
+              class="h-10 w-20 bg-red-500 text-white rounded-lg font-semibold text-base hover:bg-red-700 transition"
+            >Delete</button>
+          </form>
+        </div>
       </div>
-
-  <div style="display: flex; gap:1rem;">
-               <button style="height:30px; width: 60px; border:none;background-color:red; margin:10px 0 0 10px; font-size: 1rem;"><a style="color:white; text-decoration: none;" href="/host/edithome/<%= home._id %>?editing=true">Edit</a></button>
-               <form  action="/host/deletehome/<%= home._id%>" method="POST">
-        <button style="height:30px; width: 60px; color:white;border:none; background-color:red; margin:10px 0 0 10px;font-size: 1rem; " type="submit">Delete</button>
-      </div>
-    </div>
-  <% }) %>
-
+    <% }) %>
+  </div>
 </div>
 
 </body>

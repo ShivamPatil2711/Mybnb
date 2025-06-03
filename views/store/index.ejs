@@ -1,34 +1,54 @@
-<%- include("../partials/head")%>
-<%- include("../partials/nav")%>
+<%- include("../partials/head") %>
+<%- include("../partials/nav") %>
 
-<h2 style="color: darkviolet; font-size: 1.5rem; margin: 1rem;">Welcome to Airbnb Index Page</h2>
+<!-- Include Toastify CSS and JS from CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-<div style="display: flex; flex-wrap: wrap; gap: 2rem; padding: 2rem; justify-content: center;">
+<!-- Include Tailwind CSS from CDN -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-  <% registeredhomes.forEach((home) => { %>
-    <div style="background-color: lavender; color: darkviolet; width: 320px; border-radius: 16px; padding: 1rem; box-shadow: 3px 3px 10px rgba(128, 0, 128, 0.3); display: flex; flex-direction: column; align-items: center;">
-      
-      <img 
-        src="https://www.cvent.com/sites/default/files/image/2021-08/exterior%20view%20of%20the%20sign%20at%20the%20front%20of%20a%20hotel.jpg" 
-        alt="Home Image" 
-        style="width: 100%; height: 180px; object-fit: cover; border-radius: 10px;"
-      >
-
-      <div style="margin-top: 1rem; text-align: left; width: 100%; font-size: 1rem;">
-        <p><strong>Housename:</strong> <%= home.housename %></p>
-        <p><strong>Location:</strong> <%= home.location %></p>
-        <p><strong>Price:</strong> ₹<%= home.price %></p>
-        <p><strong>Rate:</strong> <%= home.rate %></p>
-        <p><strong>Description:</strong> <%= home.des %></p>
-      </div>
-
-      <button style="margin-top: 1rem; padding: 0.5rem 1rem; background-color: darkviolet; color: white; border: none; border-radius: 8px; cursor: pointer;">
-        Book
-      </button>
+<body>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% registeredhomes.forEach((home) => { %>
+        <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col">
+          <img 
+            src="https://www.cvent.com/sites/default/files/image/2021-08/exterior%20view%20of%20the%20sign%20at%20the%20front%20of%20a%20hotel.jpg" 
+            alt="Home Image" 
+            class="w-full h-48 object-cover border-b-2 border-red-500"
+          >
+          <div class="text-red-700 text-base flex flex-col w-full p-4">
+            <h3 class="text-lg font-semibold mb-2"><%= home.housename ? home.housename.replace(/</g, '&lt;').replace(/>/g, '&gt;') : 'Unnamed Home' %></h3>
+            <p class="mb-1"><span class="font-medium">Location:</span> <%= home.location ? home.location.replace(/</g, '&lt;').replace(/>/g, '&gt;') : 'N/A' %></p>
+            <p class="mb-1"><span class="font-medium">Price:</span> ₹<%= home.price ? Number(home.price).toLocaleString('en-IN') : 'N/A' %></p>
+            <div class="mb-1 flex items-center">
+              <span class="font-medium">Rate:</span>
+              <span class="ml-1 text-yellow-500">★</span>
+              <span class="ml-1"><%= home.rate ? Number(home.rate).toFixed(1) : 'N/A' %></span>
+            </div>
+            <p class=" text-sm mb-4 line-clamp-3">
+              <span class="font-medium text-red-700">Description:</span> 
+              <%= home.des ? home.des.replace(/</g, '&lt;').replace(/>/g, '&gt;') : 'No description available' %>
+            </p>
+            <button 
+              class="mt-auto bg-red-500 text-white font-medium py-2 px-4 rounded-lg hover:bg-red-600 transition-colors duration-200 w-full text-center"
+              onclick="Toastify({
+              text: 'Booking initiated for <%= home.housename %> ',
+                duration: 2000,
+                close:true,
+               gravity: 'bottom',
+               position: 'right',
+                backgroundColor: '#EF4444',
+                 stopOnFocus: true
+                          }).showToast();">
+              Book Now
+            </button>
+          </div>
+        </div>
+      <% }) %>
     </div>
-  <% }) %>
-
-</div>
-
+  </div>
 </body>
+
 </html>

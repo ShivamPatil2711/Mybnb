@@ -1,51 +1,25 @@
 </head>
-<body>
+<body class="font-sans" style="font-family: 'Inter', sans-serif;">
 
-<style>
-  .navbar {
-    display: flex;
-    gap: 2rem;
-    padding: 0 2rem;
-    height: 40px;
-    line-height: 40px;
-    width: 100%;
-    background-color: rgb(167, 214, 204);
-    font-family: 'Segoe UI', sans-serif;
-  }
+<!-- Include Tailwind CSS from CDN -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
-  .navbar a {
-    color: darkviolet;
-    text-decoration: none;
-    padding: 4px 10px;
-    border-radius: 6px;
-    transition: 0.3s, border 0.3s;
-  }
-
-  .navbar a.active {
-    border: 2px solid darkviolet;
-    background-color: lavender;
-  }
-
-  .navbar a:hover {
-    background-color: rgba(230, 230, 250, 0.6);
-  }
-</style>
-
-<div class="navbar">
-  <a href="/" class="<%= currentPage === '/' ? 'active' : '' %>">Index</a>
-<%if(isLoggedIn){%>
-
-  <a href="/host/airbnb-home" class="<%= currentPage === '/host/airbnb-home' ? 'active' : '' %>" >Add Home</a>
-  <a href="/bookings" class="<%= currentPage === '/bookings' ? 'active' : '' %>">Bookings</a>
-  <a href="/homes" class="<%= currentPage === '/homes' ? 'active' : '' %>">Home-List</a>
-  <a href="/favourite-list" class="<%= currentPage === '/favourite-list' ? 'active' : '' %>">Favourites</a>
-  <a href="/host/host-homes" class="<%= currentPage === '/host/host-homes' ? 'active' : '' %>">Host Homes</a>
-<%}%>
-  <a href="/login-page" class="<%= currentPage === '/login-page' ? 'active' : '' %>">
-    <%if(isLoggedIn){%>
+<div class="bg-red-500 text-white flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16 shadow-md font-sans">
+  <div class="flex items-center gap-4 sm:gap-6">
+    <a href="/" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">Index</a>
+    <% if(isLoggedIn) { %>
+      <a href="/host/airbnb-home" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/host/airbnb-home' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">Add Home</a>
+      <a href="/bookings" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/bookings' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">Bookings</a>
+      <a href="/homes" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/homes' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">Home-List</a>
+      <a href="/favourite-list" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/favourite-list' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">Favourites</a>
+      <a href="/host/host-homes" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/host/host-homes' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">Host Homes</a>
+    <% } %>
+  </div>
+  <a href="/login-page" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/login-page' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">
+    <% if(isLoggedIn) { %>
       Logout
-   <% }else{%>
+    <% } else { %>
       Login
-   <% }%>
+    <% } %>
   </a>
 </div>

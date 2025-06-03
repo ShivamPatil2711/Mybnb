@@ -18,6 +18,7 @@ const {hostrouter}=require("./routes/hostRouter");
 const rootDir=require("./utils/pathutil");
 const authrouter = require("./routes/authrouter");
 const cookieParser=require("cookie-parser");
+const constants = require("constants");
 app.use(express.static(path.join(rootDir,"public")));
 app.use(express.urlencoded({extended:true}));// body parsing( user data)
 app.use(cookieParser());
