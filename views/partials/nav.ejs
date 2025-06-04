@@ -7,13 +7,16 @@
 <div class="bg-red-500 text-white flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16 shadow-md font-sans">
   <div class="flex items-center gap-4 sm:gap-6">
     <a href="/" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">Index</a>
+  
     <% if(isLoggedIn) { %>
       <a href="/host/airbnb-home" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/host/airbnb-home' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">Add Home</a>
       <a href="/bookings" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/bookings' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">Bookings</a>
       <a href="/homes" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/homes' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">Home-List</a>
       <a href="/favourite-list" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/favourite-list' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">Favourites</a>
       <a href="/host/host-homes" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/host/host-homes' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">Host Homes</a>
-    <% } %>
+    <% }else{%>
+  <a href="/signup" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/signup-page' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">SignUp</a>
+ <%   }%>
   </div>
   <a href="/login-page" class="text-sm sm:text-base font-medium px-3 py-1 rounded-lg transition-colors duration-200 <%= currentPage === '/login-page' ? 'bg-white text-red-500 ring-2 ring-white' : 'hover:bg-red-600' %>">
     <% if(isLoggedIn) { %>
